@@ -1,0 +1,20 @@
+{
+  "index.qmd": {
+    "index.html": "4bbd0b26"
+  },
+  "about.qmd": {
+    "about.html": "2b0e4a18"
+  },
+  "posts/post-with-code/index.qmd": {
+    "index.html": "8cbe9fea"
+  },
+  "posts/welcome/index.qmd": {
+    "index.html": "f17870dd"
+  },
+  "posts/VAE/VAE.ipynb": {
+    "VAE.html": "8666b87b"
+  },
+  "posts/DVAE/DVAE.ipynb": {
+    "DVAE.html": "411a8576"
+  }
+}

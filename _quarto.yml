@@ -1,0 +1,16 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Star Research Blog"
+  navbar:
+    right:
+      - about.qmd
+format:
+  html:
+    theme: pulse
+    css: styles.css
+
+
+

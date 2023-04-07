@@ -1,0 +1,7 @@
+---
+title: "About"
+about:
+  template: jolla
+---
+
+Hi, I'm Marco Star. I am pursuing a PhD in mechanical engineering, where I mainly focus on using deep learning for machinery prognostics. Basically, I try to construct deep neural networks to estimate the remaining useful life of machines. This blog exists as an exercise for me to write about general topics that interest me (deep learning, generative models, Bayesian filters, etc...). I decided to do this writing in blog form simply for the experience of creating a blog. Although if anyone reads this, I hope the content aids your understanding of these topics. Normally when I try learning something new, I end up with multiple tabs open in my browser, each with different explanations of the topic. Eventually, I end up developing my own way of understanding the material. I would be honoured if this blog ends up as one of your tabs.
