@@ -192,8 +192,7 @@ div.csl-indent {
 </blockquote>
 <section id="a-simple-example" class="level2">
 <h2 class="anchored" data-anchor-id="a-simple-example">A Simple Example</h2>
-<p>A benefit of VAEs <span class="citation" data-cites="Kingma2014">(<a href="#ref-Kingma2014" role="doc-biblioref">Kingma and Welling 2014</a>)</span> is that they can take input values (<span class="math inline">\(X\)</span>) and map them to a lower dimensional latent variable (<span class="math inline">\(Z\)</span>). We will look at an example to show this more clearly; it will also be used in a later post to show how to model latent dynamics of systems with a lot of input variables {% fn 1 %}. The example shown below is a mass that is suspended from the ceiling. Imagine I pull it in the <span class="math inline">\(z\)</span>-direction and let go. You probably imagine the mass will bob up and down but imagine we don’t know that. Instead, we are alien scientists trying to uncover the hidden dynamics of this complex system we have never seen before. So we set up <span class="math inline">\(n\)</span> cameras or motion sensors all around the room (where <span class="math inline">\(n\)</span> is just some arbitrary number). Each sensor provides a different axis or perspective describing the motion of the spring-mass system.</p>
-<p>{{‘I took this example/analogy from a <a href="https://www.youtube.com/watch?v=a9jdQGybYmE">linear alegbra course by Nathan Kutz</a> to describe dimension reduction for Principal Component Analysis. I however, altered and extended the analogy to suit my purposes for explaining VAEs (and ultimately DVAEs and discovering the latent dynamics high dimensional of systems)’ | fndetail: 1}}</p>
+<p>A benefit of VAEs <span class="citation" data-cites="Kingma2014">(<a href="#ref-Kingma2014" role="doc-biblioref">Kingma and Welling 2014</a>)</span> is that they can take input values (<span class="math inline">\(X\)</span>) and map them to a lower dimensional latent variable (<span class="math inline">\(Z\)</span>). We will look at an example to show this more clearly; it will also be used in a later post to show how to model latent dynamics of systems with a lot of input variables <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The example shown below is a mass that is suspended from the ceiling. Imagine I pull it in the <span class="math inline">\(z\)</span>-direction and let go. You probably imagine the mass will bob up and down but imagine we don’t know that. Instead, we are alien scientists trying to uncover the hidden dynamics of this complex system we have never seen before. So we set up <span class="math inline">\(n\)</span> cameras or motion sensors all around the room (where <span class="math inline">\(n\)</span> is just some arbitrary number). Each sensor provides a different axis or perspective describing the motion of the spring-mass system.</p>
 <p><img src="images/mass_spring_VAE.png" class="img-fluid"></p>
 <p>Let us formally define inputs <span class="math inline">\(X = [x_1, x_2, x_3, ..., x_n]\)</span> which are our sensor readings. In fact, to get an idea of the complexity of the dynamics let us plot what some of these sensor readings may look like. We will say the spring mass system is modelled as,</p>
 <p><span class="math display">\[
@@ -286,17 +285,23 @@ div.csl-indent {
 <li>Decoder: <span class="math inline">\(p_{\theta_x}(X|Z) = p_{\theta_x}(x_t|x_{1:t-1}, z_{1:t})\)</span></li>
 <li>Prior: <span class="math inline">\(p(Z) = p_{\theta_z}(z_t|z_{t-1})\)</span></li>
 </ul>
-<p>We could then design some simple prior dynamics and given an initial <span class="math inline">\(z_0\)</span> use <span class="math inline">\(p_{\theta_z}(z_t|z_{t-1})\)</span> to generate any sequence of arbitrary length. To design a VAE that does this is known as a DVAE and we will see that it is just the VAE but simplified (mathematically speaking not conceptually) to deal with sequences.</p>
+<p>We could then design some simple prior dynamics and given an initial <span class="math inline">\(z_0\)</span> use <span class="math inline">\(p_{\theta_z}(z_t|z_{t-1})\)</span> to generate any sequence of arbitrary length. To design a VAE that does this is known as a Dynamical VAE (DVAE) and we will see that it is just the VAE with sequential variables (<span class="math inline">\(X\)</span> is replaced with <span class="math inline">\(x_{1:T}\)</span>; <span class="math inline">\(Z\)</span> with <span class="math inline">\(z_{1:T}\)</span>).</p>
 
 
 
 </section>
 
+
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-Kingma2014" class="csl-entry" role="listitem">
 Kingma, Diederik P., and Max Welling. 2014. <span>“Auto-Encoding Variational Bayes.”</span> <em>CoRR</em> abs/1312.6114.
 </div>
-</div></section></div></main> <!-- /main -->
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>I took this example/analogy from a <a href="https://www.youtube.com/watch?v=a9jdQGybYmE">linear alegbra course by Nathan Kutz</a> to describe dimension reduction for Principal Component Analysis. I however, altered and extended the analogy to suit my purposes for explaining VAEs (and ultimately DVAEs and discovering the latent dynamics high dimensional of systems)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

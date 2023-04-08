@@ -728,7 +728,7 @@ Epoch: 90/100, elbo: 18.4936, nll: -1.5064, kl: 20.0000
 Epoch: 100/100, elbo: 18.1595, nll: -1.8405, kl: 20.0000</code></pre>
 </div>
 </div>
-<p>Here we will test the DVAE by first seeing if the generative model can simply reconstruct the sensor signals given. Essentially we will give it the true <span class="math inline">\(x_{t-1}\)</span> value and it will generate <span class="math inline">\(z_t\)</span>, which will be decoded to <span class="math inline">\(x_t\)</span>. This will be done for all <span class="math inline">\(t \in [0,T]\)</span> where <span class="math inline">\(T\)</span> is the entire sequence (instead of just a time window like in training). Since <span class="math inline">\(x_0\)</span> is the estimated I will ignore it when plotting as the DVAE did not generate this value.</p>
+<p>Here we will test the DVAE by first seeing if the generative model can simply reconstruct the sensor signals given. Essentially we will give it the true <span class="math inline">\(x_{t-1}\)</span> value and it will generate <span class="math inline">\(z_t\)</span>, which will be decoded to <span class="math inline">\(x_t\)</span>. This will be done for all <span class="math inline">\(t \in [0,T]\)</span> where <span class="math inline">\(T\)</span> is the entire sequence (instead of just a time window like in training). Since <span class="math inline">\(x_0\)</span> is a dummy variable I will ignore it when plotting the sensors.</p>
 <div class="cell" data-execution_count="11">
 <details open="">
 <summary>Code</summary>
@@ -820,8 +820,10 @@ Epoch: 100/100, elbo: 18.1595, nll: -1.8405, kl: 20.0000</code></pre>
 </div>
 <p>You could imagine we could interpolate a new latent sequence in this latent space using our own initial condition and the prior latent dynamics. If we did this and decoded it back to the input space we should get new reconstructed sensor values of some fictitious mass-spring system that doesn’t exist (I’m aware none of these systems existed as I simulated them, but if this was all done through real life experiments I could simulate a new realistic looking virtual experiment). This could be applied in interesting applications such as generating audio, where we use real audio signals to train the model and then generate new audio using the trained model. We can also use a conditional DVAE where we generate new inputs conditioned on other variables. This can be used in machinery prognostics where you might want to find the Remaining Useful Life (RUL) of a machine or component. The RUL could be the generated inputs and these can be conditioned on sensor values. This would change the DVAE model to,</p>
 <p><span class="math display">\[
-    \text{Encoder/Inference: } q_{\phi}(z_t|z_{1:t-1}, x_{1:T}, u_{1:T}) \\
-    \text{Decoder: } p_{\theta_x}(x_t|x_{1:t-1}, z_{1:t}, u_{1:t}) \\
+    \text{Encoder/Inference: } q_{\phi}(z_t|z_{1:t-1}, x_{1:T}, u_{1:T})
+\]</span> <span class="math display">\[
+    \text{Decoder: } p_{\theta_x}(x_t|x_{1:t-1}, z_{1:t}, u_{1:t})
+\]</span> <span class="math display">\[
     \text{Prior: } p_{\theta_z}(z_t|z_{1:t-1}, x_{1:t-1}, u_{1:t})
 \]</span></p>
 <p>where in this example <span class="math inline">\(x_t = (RUL)_t\)</span> and $u_t = $ sensor signals at time <span class="math inline">\(t\)</span>.</p>
